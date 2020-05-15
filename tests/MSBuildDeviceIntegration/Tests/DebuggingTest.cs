@@ -375,6 +375,7 @@ namespace ${ROOT_NAMESPACE} {
 				};
 				options.EvaluationOptions.UseExternalTypeResolver = true;
 				ClearAdbLogcat ();
+				b.BuildLogFile = "run.log";
 				Assert.True (b.RunTarget (proj, "_Run", parameters: new string [] {
 					$"AndroidSdbTargetPort={port}",
 					$"AndroidSdbHostPort={port}",
@@ -409,6 +410,7 @@ namespace ${ROOT_NAMESPACE} {
 				}
 				expected = 1;
 				Assert.AreEqual (expected, breakcountHitCount, $"Should have hit {expected} breakpoints. Only hit {breakcountHitCount}");
+				b.BuildLogFile = "uninstall.log";
 				Assert.True (b.Uninstall (proj), "Project should have uninstalled.");
 				session.Exit ();
 			}
